@@ -113,7 +113,7 @@ class Typr_SVG {
     while(i<ts.length) {
       var cmd = ts[i];  i++;
       
-      if(cmd=="z") {  cmds.push("Z");  x=ox;  y=oy;  }
+      if(cmd=="z") {  cmds.add("Z");  x=ox;  y=oy;  }
       else {
         var cmu = cmd.toUpperCase();
         var ps = pc[cmu], reps = _reps(ts, i, ps);
@@ -128,13 +128,13 @@ class Typr_SVG {
           else if(cmu=="V") {  y = yi+ts[i++];                   cmds.add("L");  crds.addAll([ x,y ]);  }
           else if(cmu=="C") {
             var x1=xi+ts[i++], y1=yi+ts[i++], x2=xi+ts[i++], y2=yi+ts[i++], x3=xi+ts[i++], y3=yi+ts[i++];
-            cmds.push("C");  crds.addAll( [ x1,y1,x2,y2,x3,y3 ] );  x=x3;  y=y3;
+            cmds.add("C");  crds.addAll( [ x1,y1,x2,y2,x3,y3 ] );  x=x3;  y=y3;
           }
           else if(cmu=="S") {
             var co = math.max(crds.length-4, 0);
             var x1 = x+x-crds[co], y1 = y+y-crds[co+1];
             var x2=xi+ts[i++], y2=yi+ts[i++], x3=xi+ts[i++], y3=yi+ts[i++];  
-            cmds.push("C");  crds.addAll([ x1,y1,x2,y2,x3,y3 ]);  x=x3;  y=y3;
+            cmds.add("C");  crds.addAll([ x1,y1,x2,y2,x3,y3 ]);  x=x3;  y=y3;
           } else {
             print("Unknown SVG command "+cmd);
           }
