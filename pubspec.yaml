@@ -1,7 +1,7 @@
 name: typr_dart
-description: A new Flutter package project.
+description: typed.js rewrite by Dart.
 version: 0.0.1
-homepage:
+homepage: https://github.com/wasabia/typr_dart
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
