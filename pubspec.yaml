@@ -1,6 +1,6 @@
 name: typr_dart
-description: typed.js rewrite by Dart.
-version: 0.0.1
+description: typr_dart - process fonts in Dart. typr.js rewrite by Dart.
+version: 0.0.2
 homepage: https://github.com/wasabia/typr_dart
 
 environment:
