@@ -4,29 +4,19 @@ import 'dart:typed_data';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:typr_dart/typr_dart.dart';
 
-
-
-
-
-
 void main() {
   test('adds one to input values', () async {
-   
     Uint8List data = await loadFile();
     print(" data.... ${data.length} ");
 
-
     int t1 = DateTime.now().millisecondsSinceEpoch;
-    
 
     var font = Font(data);
 
     int t2 = DateTime.now().millisecondsSinceEpoch;
 
     print(" parse buffer cost ${t2 - t1} ");
-    
-    
-    
+
     print(font.runtimeType);
     // print("font.length : ${font.length}");
     // print(font.tables);
@@ -44,7 +34,6 @@ void main() {
       var _path = font.glyphToPath(glyph);
       print(_path);
     });
-
   });
 }
 

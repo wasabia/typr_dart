@@ -66,7 +66,8 @@ class Typr_U {
         "stack": [],
         "nStems": 0,
         "haveWidth": false,
-        "width": font.CFF["Private"] != null ? font.CFF["Private"].defaultWidthX : 0,
+        "width":
+            font.CFF["Private"] != null ? font.CFF["Private"].defaultWidthX : 0,
         "open": false
       };
       var cff = font.CFF, pdct = font.CFF["Private"];
@@ -120,7 +121,8 @@ class Typr_U {
             if (prOnCurve == 1)
               Typr_U_P.moveTo(p, gl["xs"][pr], gl["ys"][pr]);
             else
-              Typr_U_P.moveTo(p, (gl["xs"][pr] + x) / 2, (gl["ys"][pr] + y) / 2);
+              Typr_U_P.moveTo(
+                  p, (gl["xs"][pr] + x) / 2, (gl["ys"][pr] + y) / 2);
           }
         }
         if (onCurve == 1) {
@@ -169,14 +171,13 @@ class Typr_U {
       var llist = gpos["lookupList"], flist = gpos["featureList"];
       Map<int, bool> tused = {};
       for (var i = 0; i < flist.length; i++) {
-        var fl = flist[i]; 
+        var fl = flist[i];
         //console.warn(fl);
         if (fl["tag"] != "kern") continue;
 
         var _fl_tab = fl["tab"];
 
         for (var ti = 0; ti < _fl_tab.length; ti++) {
-
           var _ftti = _fl_tab[ti];
 
           if (tused[_ftti] == true) continue;
@@ -205,10 +206,14 @@ class Typr_U {
                 var c2 = _getGlyphClass(g2, ltab["classDef2"]);
                 adj = ltab["matrix"][c1][c2];
               }
-              if (adj != null && adj["val1"] != null && adj["val1"][2] != null) {
+              if (adj != null &&
+                  adj["val1"] != null &&
+                  adj["val1"][2] != null) {
                 offset += adj.val1[2]; // xAdvance adjustment of first glyph
               }
-              if (adj != null && adj["val2"] != null && adj["val2"][0] != null) {
+              if (adj != null &&
+                  adj["val2"] != null &&
+                  adj["val2"][0] != null) {
                 offset += adj.val2[0]; // xPlacement adjustment of second glyph
               }
             }
@@ -430,10 +435,10 @@ class Typr_U {
         tpath["crds"].add(path["crds"][j] + x);
         tpath["crds"].add(path["crds"][j + 1]);
       }
-      if ( clr != null ) tpath["cmds"].add(clr);
+      if (clr != null) tpath["cmds"].add(clr);
       for (var j = 0; j < path["cmds"].length; j++)
         tpath["cmds"].add(path["cmds"][j]);
-      if ( clr != null ) tpath["cmds"].add("X");
+      if (clr != null) tpath["cmds"].add("X");
       x += font.hmtx["aWidth"][gid]; // - font.hmtx.lsBearing[gid];
       if (i < gls.length - 1) x += getPairAdjustment(font, gid, gid2);
     }
@@ -528,7 +533,7 @@ class Typr_U {
         hasWidthArg = stack.length % 2 != 0;
         if (hasWidthArg && !haveWidth) {
           // width = stack.removeAt(0) + nominalWidthX;
-          if(nominalWidthX == null) {
+          if (nominalWidthX == null) {
             width = null;
             stack.removeAt(0);
           } else {
@@ -548,7 +553,7 @@ class Typr_U {
         hasWidthArg = stack.length % 2 != 0;
         if (hasWidthArg && !haveWidth) {
           // width = stack.removeAt(0) + nominalWidthX;
-          if(nominalWidthX == null) {
+          if (nominalWidthX == null) {
             width = null;
             stack.removeAt(0);
           } else {
@@ -561,13 +566,12 @@ class Typr_U {
         haveWidth = true;
       } else if (v == "o4") {
         if (stack.length > 1 && !haveWidth) {
-          if(nominalWidthX == null) {
+          if (nominalWidthX == null) {
             width = null;
             stack.removeAt(0);
           } else {
             width = stack.removeAt(0) + nominalWidthX;
           }
-
 
           haveWidth = true;
         }
@@ -598,7 +602,7 @@ class Typr_U {
           Typr_U_P.lineTo(p, x, y);
         }
       } else if (v == "o8" || v == "o24") {
-         // rrcurveto || rcurveline
+        // rrcurveto || rcurveline
         var count = stack.length;
         var index = 0;
         while (index + 6 <= count) {
@@ -617,10 +621,11 @@ class Typr_U {
           Typr_U_P.lineTo(p, x, y);
         }
       } else if (v == "o11") {
-         break;
-      } else if (
-        v == "o1234" || v == "o1235" ||
-          v == "o1236" || v == "o1237") //if((v+"").slice(0,3)=="o12")
+        break;
+      } else if (v == "o1234" ||
+          v == "o1235" ||
+          v == "o1236" ||
+          v == "o1237") //if((v+"").slice(0,3)=="o12")
       {
         if (v == "o1234") {
           c1x = x + stack.removeAt(0); // dx1
@@ -690,13 +695,13 @@ class Typr_U {
         }
       } else if (v == "o14") {
         if (stack.length > 0 && !haveWidth) {
-          if(font["nominalWidthX"] == null) {
+          if (font["nominalWidthX"] == null) {
             stack.removeAt(0);
             width = null;
           } else {
             width = stack.removeAt(0) + font["nominalWidthX"];
           }
-          
+
           haveWidth = true;
         }
         if (stack.length == 4) // seac = standard encoding accented character
@@ -733,7 +738,7 @@ class Typr_U {
         hasWidthArg = stack.length % 2 != 0;
         if (hasWidthArg && !haveWidth) {
           // width = stack.removeAt(0) + nominalWidthX;
-          if(nominalWidthX == null) {
+          if (nominalWidthX == null) {
             width = null;
             stack.removeAt(0);
           } else {
@@ -748,13 +753,13 @@ class Typr_U {
         i += (nStems + 7) >> 3;
       } else if (v == "o21") {
         if (stack.length > 2 && !haveWidth) {
-          if(nominalWidthX == null) {
+          if (nominalWidthX == null) {
             width = null;
             stack.removeAt(0);
           } else {
             width = stack.removeAt(0) + nominalWidthX;
           }
-          
+
           haveWidth = true;
         }
 
@@ -767,7 +772,7 @@ class Typr_U {
       } else if (v == "o22") {
         if (stack.length > 1 && !haveWidth) {
           // width = stack.removeAt(0) + nominalWidthX;
-          if(nominalWidthX == null) {
+          if (nominalWidthX == null) {
             width = null;
             stack.removeAt(0);
           } else {
@@ -783,7 +788,6 @@ class Typr_U {
         Typr_U_P.moveTo(p, x, y);
         open = true;
       } else if (v == "o25") {
-
         while (stack.length > 6) {
           x += stack.removeAt(0);
           y += stack.removeAt(0);
@@ -904,7 +908,7 @@ class Typr_U {
 class Typr_U_P {
   static moveTo(p, x, y) {
     p["cmds"].add("M");
-    p["crds"].addAll( [x, y] );
+    p["crds"].addAll([x, y]);
   }
 
   static lineTo(p, x, y) {
